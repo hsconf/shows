@@ -1,17 +1,21 @@
+import Home from './containers/Home/Home.tsx';
+import ToolBar from './components/ToolBar/ToolBar.tsx';
+import { Route, Routes } from 'react-router-dom';
+import Show from './containers/Show/Show.tsx';
 
 const App = () => {
-    
-    const data = async () => {
-        const response = await fetch('http://api.tvmaze.com/search/shows?q=csi');
-        const data = await response.json();
-        console.log(data);
-    }
-
-    data()
-
     return (
         <>
-
+            <header>
+                <ToolBar />
+            </header>
+            <main className="container">
+                <Routes>
+                    <Route path='/' element={<Home />}>
+                        <Route path='show/:id' element={<Show />} />
+                    </Route>
+                </Routes>
+            </main>
         </>
     );
 };
